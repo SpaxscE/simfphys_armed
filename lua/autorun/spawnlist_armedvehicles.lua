@@ -903,6 +903,35 @@ local V = {
 }
 list.Set( "simfphys_vehicles", "sim_fphys_ratmobile", V )
 
+local light_table = {
+	L_HeadLampPos = Vector(67,20,4),
+	L_HeadLampAng = Angle(15,0,0),
+	R_HeadLampPos = Vector(67,-20,4),
+	R_HeadLampAng = Angle(15,0,0),
+
+	L_RearLampPos = Vector(-72,24,1),
+	L_RearLampAng = Angle(40,180,0),
+	R_RearLampPos = Vector(-72,-24,1),
+	R_RearLampAng = Angle(40,180,0),
+	
+	Headlight_sprites = { 
+		Vector(67,20,4),
+		Vector(67,-20,4)
+	},
+	Headlamp_sprites = { 
+		Vector(67,20,4),
+		Vector(67,-20,4)
+	},
+	Rearlight_sprites = {
+		Vector(-71.2,23,0),
+		Vector(-71.2,-23,0)
+	},
+	Brakelight_sprites = {
+		Vector(-71.2,23,0),
+		Vector(-71.2,-23,0)
+	}
+}
+list.Set( "simfphys_lights", "driprip_chaos126p", light_table)
 
 local V = {
 	Name = "DIPRIP - Chaos126p",
@@ -914,6 +943,8 @@ local V = {
 		Mass = 4800,
 		FrontWheelMass = 225,
 		RearWheelMass = 225,
+		
+		LightsTable = "driprip_chaos126p",
 		
 		FirstPersonViewPos = Vector(0,0,40),
 		
@@ -1040,6 +1071,35 @@ local V = {
 }
 list.Set( "simfphys_vehicles", "sim_fphys_chaos126p", V )
 
+local light_table = {
+	L_HeadLampPos = Vector(73,23,4),
+	L_HeadLampAng = Angle(15,0,0),
+	R_HeadLampPos = Vector(73,-23,4),
+	R_HeadLampAng = Angle(15,0,0),
+
+	L_RearLampPos = Vector(-102,-16,-1),
+	L_RearLampAng = Angle(40,180,0),
+	R_RearLampPos = Vector(-102,16,-1),
+	R_RearLampAng = Angle(40,180,0),
+	
+	Headlight_sprites = { 
+		Vector(73,23,4),
+		Vector(73,-23,4)
+	},
+	Headlamp_sprites = { 
+		Vector(73,23,4),
+		Vector(73,-23,4)
+	},
+	Rearlight_sprites = {
+		Vector(-102,-16,-1),
+		Vector(-102,16,-1)
+	},
+	Brakelight_sprites = {
+		Vector(-102,-16,-1),
+		Vector(-102,16,-1)
+	}
+}
+list.Set( "simfphys_lights", "diprip_hedgehog", light_table)
 
 local V = {
 	Name = "DIPRIP - Hedgehog",
@@ -1053,6 +1113,8 @@ local V = {
 		RearWheelMass = 225,
 		
 		FirstPersonViewPos = Vector(0,0,40),
+		
+		LightsTable = "diprip_hedgehog",
 		
 		IsArmored = true,
 		

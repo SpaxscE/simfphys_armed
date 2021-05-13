@@ -20,16 +20,16 @@
 	//"$phongboost"	"5"
 	//"$phongfresnelranges"	"[0 0.5 1]"
 	
-	//"$selfillum" "1"
-	//"$selfillumtint" "[3 3 3]"
+	"$selfillum" "1"
+	"$selfillumtint" "[3 3 3]"
 	
-	//"$selfillummask" 	"models/Hedgehog/Hedgehog_ilumination"
+	"$selfillummask" 	"models/Hedgehog/Hedgehog_ilumination"
 	
 	"$phong" "1"
 	"$phongexponent" "20"
 	//"$phongexponenttexture" "models/Hedgehog/Hedgehog_exponent"
 	"$phongboost" "2.5"	
-	"$lightwarptexture" "models/Hedgehog/Hedgehog_lightwarp"
+	"$lightwarptexture" "models/Hedgehog/Hedgehog_red_lightwarp"
 	//"$phongwarptexture" "models/Hedgehog/Hedgehog_phongwarp"
 	//"$phongalbedotint" "1"
 	"$phongfresnelranges"	"[.05 3 1]"

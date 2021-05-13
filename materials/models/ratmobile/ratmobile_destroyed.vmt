@@ -1,0 +1,17 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "models/Ratmobile/Ratmobile_destroyed"
+	"$bumpmap" "models/Ratmobile/Ratmobile_normal"	
+	"$surfaceprop" "solidmetal"
+	//"$envmap" "env_cubemap"
+	//"$envmap" "Environment Maps/rg"
+	//"$envmap" "models/Chaos126p/rg"
+
+	//"$envmapmask" "models/WarBuggy/WarBuggy_mask"
+	//"$envmapcontrast" 1
+	//"$envmapsaturation" 1
+
+	//"$envmaptint" "[ 0.5 0.5 0.5 ]"
+	//"$normalmapalphaenvmapmask" "1"
+
+}

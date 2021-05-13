@@ -1,0 +1,43 @@
+"vertexlitgeneric"
+{
+	"$basetexture" "models/Chaos126p/Chaos126p_blue"
+	"$bumpmap" "models/Chaos126p/Chaos126p_red_skin_normal"
+
+	//"$envmap" "Environment Maps/rg"
+	//"$envmapcontrast" 1
+	//"$envmapsaturation" 1
+	//"$envmaptint" "[ 0.2 0.2 0.2 ]"
+	//"$normalmapalphaenvmapmask" "1"	
+	
+	//"$halflambert" "1"
+	//"$nodecal" "1"
+	//"$model" "1"
+	//"$phong" "1"
+	//"$phongexponent" "10"
+	//"$phongexponenttexture" "models/Chaos126p/Chaos126p_exponent"
+	//"$phongboost"	"3"
+	//"$phongfresnelranges"	"[0 0.5 1]"
+	
+	
+	"$selfillum" "1"
+	"$selfillumtint" "[3 3 3]"
+	
+	"$selfillummask" 	"models/Chaos126p/Chaos126p_blue_ilumination"
+	
+	"$phong" "1"
+	"$phongexponent" "5"
+	//"$phongexponenttexture" "models/Chaos126p/Chaos126p_exponent"
+	"$phongboost" ".7"	
+	"$lightwarptexture" "models/Chaos126p/Chaos126p_blue_lightwarp"
+	//"$phongwarptexture" "models/Chaos126p/Chaos126p_blue_phongwarp"
+	//"$phongalbedotint" "1"
+	"$phongfresnelranges"	"[.05 3 1]"
+	"$halflambert" "1"
+
+	//Rim lighting parameters
+	//"$rimlight" "1"												// To enable rim lighting (requires phong)
+	//"$rimlightexponent" "15"										// Exponent for phong component of rim lighting	
+	//"$rimlightboost" "3"										// Boost for ambient cube component of rim lighting
+	
+	
+}

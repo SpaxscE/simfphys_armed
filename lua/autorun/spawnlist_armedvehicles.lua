@@ -61,6 +61,8 @@ local V = {
 	Category = "Armed Vehicles",
 
 	Members = {
+		AITEAM = 1,
+
 		Mass = 3500,
 		MaxHealth = 6000,
 		
@@ -174,6 +176,8 @@ local V = {
 	Category = "Armed Vehicles",
 
 	Members = {
+		AITEAM = 2,
+
 		Mass = 1700,
 		
 		LightsTable = "jeep",
@@ -247,6 +251,8 @@ local V = {
 	Category = "Armed Vehicles",
 
 	Members = {
+		AITEAM = 2,
+
 		Mass = 1700,
 		
 		LightsTable = "jeep",
@@ -320,6 +326,8 @@ local V = {
 	Category = "Armed Vehicles",
 
 	Members = {
+		AITEAM = 2,
+
 		Mass = 1700,
 		
 		LightsTable = "elitejeep",
@@ -417,6 +425,8 @@ local V = {
 	Category = "Armed Vehicles",
 
 	Members = {
+		AITEAM = 2,
+
 		Mass = 1700,
 		
 		LightsTable = "elitejeep",
@@ -515,6 +525,8 @@ local V = {
 	SpawnOffset = Vector(0,0,50),
 
 	Members = {
+		AITEAM = 2,
+
 		Mass = 4800,
 		
 		MaxHealth = 4500,
@@ -773,6 +785,8 @@ local V = {
 	SpawnOffset = Vector(0,0,25),
 
 	Members = {
+		AITEAM = 3,
+
 		Mass = 4800,
 		FrontWheelMass = 225,
 		RearWheelMass = 225,
@@ -911,6 +925,8 @@ local V = {
 	SpawnOffset = Vector(0,0,30),
 
 	Members = {
+		AITEAM = 3,
+
 		Mass = 4800,
 		FrontWheelMass = 225,
 		RearWheelMass = 225,
@@ -1048,6 +1064,8 @@ local V = {
 	SpawnOffset = Vector(0,0,25),
 
 	Members = {
+		AITEAM = 3,
+
 		Mass = 4800,
 		FrontWheelMass = 225,
 		RearWheelMass = 225,
@@ -1251,6 +1269,8 @@ local V = {
 	SpawnAngleOffset = 90,
 
 	Members = {
+		AITEAM = 2,
+
 		Mass = 20000,
 		AirFriction = 7,
 		--Inertia = Vector(14017.5,46543,47984.5),
@@ -1428,6 +1448,8 @@ local V = {
 	SpawnAngleOffset = 90,
 
 	Members = {
+		AITEAM = 1,
+
 		Mass = 20000,
 		AirFriction = 0,
 		--Inertia = Vector(14017.5,46543,47984.5),

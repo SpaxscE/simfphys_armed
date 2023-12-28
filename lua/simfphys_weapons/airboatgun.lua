@@ -1,28 +1,23 @@
 
 local function AirboatFire(ply,vehicle,shootOrigin,Attachment,damage)
 	local bullet = {}
-		bullet.Num 			= 1
-		bullet.Src 			= shootOrigin
-		bullet.Dir 			= Attachment.Ang:Forward()
-		bullet.Spread 		= Vector(0.04,0.04,0)
-		bullet.Tracer		= 1
-		bullet.TracerName 	= (damage > 10 and "AirboatGunHeavyTracer" or "AirboatGunTracer")
-		bullet.Force		= damage
-		bullet.Damage		= damage
-		bullet.HullSize		= 1
-		bullet.DisableOverride = true
-		bullet.Callback = function(att, tr, dmginfo)
-			dmginfo:SetDamageType(DMG_AIRBOAT)
-			
-			local effectdata = EffectData()
-				effectdata:SetOrigin(  tr.HitPos + tr.HitNormal )
-				effectdata:SetNormal( tr.HitNormal )
-				effectdata:SetRadius( (damage > 1) and 8 or 3 )
-			util.Effect( "cball_bounce", effectdata, true, true )
-		end
-		bullet.Attacker 	= ply
-		
-	vehicle:FireBullets( bullet )
+	bullet.Src 	= shootOrigin
+	bullet.Dir 	= Attachment.Ang:Forward()
+	bullet.Spread 	= Vector(0.04,0.04,0.04)
+	bullet.TracerName = "lvs_ar2_tracer"
+	bullet.Force	= damage
+	bullet.HullSize 	= 1
+	bullet.Damage	= damage
+	bullet.Velocity = 12000
+	bullet.Attacker 	= ply
+	bullet.Callback = function(att, tr, dmginfo)
+		local effectdata = EffectData()
+		effectdata:SetOrigin( tr.HitPos + tr.HitNormal )
+		effectdata:SetNormal( tr.HitNormal * 2 )
+		effectdata:SetRadius( 10 )
+		util.Effect( "cball_bounce", effectdata, true, true )
+	end
+	vehicle:LVSFireBullet( bullet )
 end
 
 function simfphys.weapon:ValidClasses()

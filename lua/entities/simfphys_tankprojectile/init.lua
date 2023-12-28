@@ -46,12 +46,6 @@ function ENT:Initialize()
 	self.Vel = self:GetForward() * 200
 end
 
-local CanDeflectOn = {
-	["gmod_sent_vehicle_fphysics_base"] = true,
-	["gmod_sent_vehicle_fphysics_wheel"] = true,
-	["prop_physics"] = true,
-}
-
 function ENT:Think()	
 	local curtime = CurTime()
 	self:NextThink( curtime )
@@ -78,7 +72,7 @@ function ENT:Think()
 		
 		self.DeflectAng = self.DeflectAng or 25
 		
-		if hitangle < self.DeflectAng and not self.Bounced and CanDeflectOn[ trace.Entity:GetClass() ] then
+		if hitangle < self.DeflectAng and not self.Bounced and (trace.Entity:GetClass() == "prop_physics" or trace.Entity.LVS) then
 			
 			local thVel = self.Vel:Length()
 			

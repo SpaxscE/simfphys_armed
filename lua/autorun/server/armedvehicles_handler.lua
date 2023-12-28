@@ -237,7 +237,7 @@ function simfphys.FireBullet( data )
 	bullet.Src 			= data.shootOrigin
 	bullet.Dir 			= data.shootDirection
 	bullet.Spread 		= data.Spread
-	bullet.TracerName	= "lvs_tracer_yellow"
+	bullet.TracerName	= "lvs_tracer_white"
 	bullet.Force		= (data.Force and data.Force or 1)
 	bullet.Damage		= (data.Damage and data.Damage or 1)
 	bullet.HullSize		= data.HullSize or 1

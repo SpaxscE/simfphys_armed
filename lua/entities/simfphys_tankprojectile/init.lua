@@ -119,14 +119,14 @@ function ENT:Think()
 					else
 						dmginfo:SetDamageType(DMG_DIRECT)
 					end
-					
+
 					local attackingEnt = IsValid( self.AttackingEnt ) and self.AttackingEnt or self
 					local attacker = IsValid( self.Attacker ) and self.Attacker or self
-					
+
 					util.BlastDamage( attackingEnt, attacker, tr.HitPos,self.BlastRadius,self.BlastDamage)
-					
+
 					util.Decal("scorch", tr.HitPos - tr.HitNormal, tr.HitPos + tr.HitNormal)
-					
+
 					if tr.Entity ~= Entity(0) then
 						if simfphys.IsCar( tr.Entity ) then
 							local effectdata = EffectData()

@@ -36,9 +36,6 @@ Hudmph = GetConVar( "cl_simfphys_hudmph" ):GetBool()
 Hudreal = GetConVar( "cl_simfphys_hudrealspeed" ):GetBool()
 show_crosshair = GetConVar( "cl_simfphys_crosshair" ):GetBool()
 
-local xhair = Material( "sprites/hud/v_crosshair1" )
-local zoom_mat = Material( "vgui/zoom" )
-
 local function DrawCircle( X, Y, radius )
 	local segmentdist = 360 / ( 2 * math.pi * radius / 2 )
 	
@@ -114,8 +111,9 @@ local function traceAndDrawCrosshair( startpos, endpos, vehicle, pod )
 	local printspeed = Hudmph and tostring(mph).."mph" or tostring(kmh).."km/h"
 	
 	if Type == 0 then
-		surface.SetMaterial( xhair )
-		surface.DrawTexturedRect( scr.x - 17,scr.y - 17, 34, 34)
+		vehicle:PaintCrosshairCenter( scr )
+		vehicle:PaintCrosshairOuter( scr )
+		surface.SetDrawColor( color_white ) 
 		
 		if vehicle:GetNWBool( "simfphys_NoRacingHud", false ) and ShowHud then
 			local fuel = vehicle:GetFuel() / vehicle:GetMaxFuel()
@@ -300,8 +298,9 @@ local function traceAndDrawCrosshair( startpos, endpos, vehicle, pod )
 		surface.DrawLine( scrW - len * 1.25, scrH * 1.85 + len * 2, scrW + len * 1.25, scrH * 1.85 + len * 2 )
 		
 	elseif Type == 3 then
-		surface.SetMaterial( xhair )
-		surface.DrawTexturedRect( scr.x - 17,scr.y - 17, 34, 34)
+		vehicle:PaintCrosshairCenter( scr )
+		vehicle:PaintCrosshairOuter( scr )
+		surface.SetDrawColor( color_white ) 
 		
 		local scrW = ScrW() / 2
 		local scrH = ScrH() / 2

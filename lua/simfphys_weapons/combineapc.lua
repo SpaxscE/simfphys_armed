@@ -8,33 +8,23 @@ local function cAPCFire(ply,vehicle,shootOrigin,Attachment,damage,ID)
 	util.Effect( "AirboatMuzzleFlash", effectdata, true, true )
 
 	local bullet = {}
-		bullet.Num 			= 1
-		bullet.Src 			= shootOrigin
-		bullet.Dir 			= Attachment.Ang:Forward()
-		bullet.Spread 		= Vector(0.015,0.015,0)
-		bullet.Tracer		= 0
-		bullet.TracerName 	= "none"
-		bullet.Force		= damage
-		bullet.Damage		= damage
-		bullet.HullSize		= 1
-		bullet.DisableOverride = true
-		bullet.Callback = function(att, tr, dmginfo)
-			local effectdata = EffectData()
-				effectdata:SetEntity( vehicle )
-				effectdata:SetAttachment( ID )
-				effectdata:SetStart( shootOrigin )
-				effectdata:SetOrigin( tr.HitPos )
-				effectdata:SetScale( 6000 )
-				util.Effect("AR2Tracer", effectdata )
-		
-			local effectdata = EffectData()
-				effectdata:SetOrigin(  tr.HitPos + tr.HitNormal )
-				effectdata:SetNormal( tr.HitNormal )
-			util.Effect( "AR2Impact", effectdata, true, true )
-		end
-		bullet.Attacker 	= ply
-		
-	vehicle:FireBullets( bullet )
+	bullet.Src 	= shootOrigin
+	bullet.Dir 	= Attachment.Ang:Forward()
+	bullet.Spread 	= Vector(0.015,0.015,0.015)
+	bullet.TracerName = "lvs_ar2_tracer"
+	bullet.Force	= damage
+	bullet.HullSize 	= 6
+	bullet.Damage	= damage
+	bullet.Velocity = 12000
+	bullet.Attacker 	= ply
+	bullet.Callback = function(att, tr, dmginfo)
+		local effectdata = EffectData()
+		effectdata:SetOrigin( tr.HitPos + tr.HitNormal )
+		effectdata:SetNormal( tr.HitNormal * 2 )
+		effectdata:SetRadius( 10 )
+		util.Effect( "cball_bounce", effectdata, true, true )
+	end
+	vehicle:LVSFireBullet( bullet )
 end
 
 function simfphys.weapon:ValidClasses()

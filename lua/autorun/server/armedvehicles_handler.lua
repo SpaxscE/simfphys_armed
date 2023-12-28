@@ -315,7 +315,7 @@ function simfphys.WeaponSystemRegister( vehicle )
 	end
 	
 	local class = vehicle:GetSpawn_List()
-	
+
 	for wpnname,tbldata in pairs( simfphys.Weapons ) do
 		for _,v in pairs( tbldata.ValidClasses() ) do
 			if class == v then
@@ -326,6 +326,14 @@ function simfphys.WeaponSystemRegister( vehicle )
 				table.insert(simfphys.ManagedVehicles, data)
 
 				tbldata.Initialize( tbldata, vehicle )
+
+				timer.Simple(0.3, function()
+					if not IsValid( vehicle ) then return end
+
+					if vehicle:GetAITEAM() == 0 then
+						vehicle:SetAITEAM( 3 )
+					end
+				end)
 			end
 		end
 	end

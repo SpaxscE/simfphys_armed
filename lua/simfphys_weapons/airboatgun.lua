@@ -61,8 +61,23 @@ function simfphys.weapon:AimWeapon( ply, vehicle, pod )
 	local Aimang = ply:EyeAngles()
 	local AimRate = 250
 	
-	local Angles = vehicle:WorldToLocalAngles( Aimang ) - Angle(0,90,0)
-	
+	local Angles = angle_zero
+	if ply:lvsMouseAim() then
+		local ang = vehicle:GetAngles()
+		ang.y = pod:GetAngles().y + 90
+
+		local Forward = ang:Right()
+		local View = pod:WorldToLocalAngles( Aimang )
+
+		local Pitch = (vehicle:AngleBetweenNormal( View:Up(), ang:Forward() ) - 90)
+		local Yaw = (vehicle:AngleBetweenNormal( View:Forward(), ang:Right() ) - 90)
+
+		Angles = Angle(-Pitch,Yaw,0)
+	else
+		Angles = vehicle:WorldToLocalAngles( Aimang ) - Angle(0,90,0)
+		Angles:Normalize()
+	end
+
 	vehicle.sm_pp_yaw = vehicle.sm_pp_yaw and math.ApproachAngle( vehicle.sm_pp_yaw, Angles.y, AimRate * FrameTime() ) or 0
 	vehicle.sm_pp_pitch = vehicle.sm_pp_pitch and math.ApproachAngle( vehicle.sm_pp_pitch, Angles.p, AimRate * FrameTime() ) or 0
 	

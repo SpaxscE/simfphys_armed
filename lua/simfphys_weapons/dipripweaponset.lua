@@ -85,12 +85,29 @@ function simfphys.weapon:Think( vehicle )
 	local ID = vehicle:LookupAttachment( "machinegun_ref" )
 	local Attachment = vehicle:GetAttachment( ID )
 	
-	local Angles = vehicle:WorldToLocalAngles( ply:EyeAngles() )
-	Angles:Normalize()
-	
+	local Angles = angle_zero
+
+	if ply:lvsMouseAim() then
+		local TargetAngle = ply:EyeAngles()
+
+		local ang = vehicle:GetAngles()
+		ang.y = DriverSeat:GetAngles().y + 90
+
+		local Forward = ang:Right()
+		local View = DriverSeat:WorldToLocalAngles( TargetAngle )
+
+		local Pitch = (vehicle:AngleBetweenNormal( View:Up(), ang:Forward() ) - 90)
+		local Yaw = (vehicle:AngleBetweenNormal( View:Forward(), ang:Right() ) - 90)
+
+		Angles = Angle(-Pitch,Yaw,0)
+	else
+		Angles = vehicle:WorldToLocalAngles( ply:EyeAngles() )
+		Angles:Normalize()
+	end
+
 	vehicle.sm_pp_yaw = vehicle.sm_pp_yaw and (vehicle.sm_pp_yaw + (Angles.y - vehicle.sm_pp_yaw) * 0.2) or 0
 	vehicle.sm_pp_pitch = vehicle.sm_pp_pitch and (vehicle.sm_pp_pitch + (Angles.p - vehicle.sm_pp_pitch) * 0.2) or 0
-	
+
 	vehicle:SetPoseParameter("vehicle_weapon_yaw", vehicle.sm_pp_yaw )
 	vehicle:SetPoseParameter("vehicle_weapon_pitch", -vehicle.sm_pp_pitch )
 	

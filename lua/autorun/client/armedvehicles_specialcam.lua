@@ -29,7 +29,7 @@ hook.Add( "CalcView", "zz_simfphys_gunner_view", function( ply, pos, ang )
 	
 	if not IsValid( Vehicle ) then return end
 	
-	local Base = ply.GetSimfphys and ply:GetSimfphys() or Vehicle.vehiclebase
+	local Base = ply:GetSimfphys()
 	
 	if not IsValid( Base ) then return end
 	
@@ -65,13 +65,13 @@ hook.Add( "CalcView", "zz_simfphys_gunner_view", function( ply, pos, ang )
 			
 			view.origin = attachment.Pos + attachment.Ang:Forward() * offset.x  + attachment.Ang:Right() * offset.y  + attachment.Ang:Up() *  offset.z
 		end
-		
+
 		return view
 	end
 	
 	view.origin = view.origin + Vehicle:GetForward() * offset.x + Vehicle:GetRight() * offset.y + Vehicle:GetUp() * offset.z
-	
-	local mn, mx = Vehicle:GetRenderBounds()
+
+	local mn, mx = Base:GetRenderBounds()
 	local radius = ( mn - mx ):Length()
 	local radius = radius + radius * Vehicle:GetCameraDistance()
 

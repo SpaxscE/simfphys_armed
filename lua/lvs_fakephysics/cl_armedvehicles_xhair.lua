@@ -1,33 +1,11 @@
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
--- DO NOT EDIT OR REUPLOAD THIS SCRIPT
-
 CreateClientConVar( "cl_simfphys_crosshair", "1", true, false )
 
 local ShowHud = false
-cvars.AddChangeCallback( "cl_simfphys_hud", function( convar, oldValue, newValue ) ShowHud = tonumber( newValue )~=0 end)
-ShowHud = GetConVar( "cl_simfphys_hud" ):GetBool()
-
 local show_crosshair = false
 local Hudmph = false
 local Hudreal = false
 
+cvars.AddChangeCallback( "cl_simfphys_hud", function( convar, oldValue, newValue ) ShowHud = tonumber( newValue )~=0 end)
 cvars.AddChangeCallback( "cl_simfphys_crosshair", function( convar, oldValue, newValue ) show_crosshair = tonumber( newValue )~=0 end)
 cvars.AddChangeCallback( "cl_simfphys_hudmph", function( convar, oldValue, newValue ) Hudmph = tonumber( newValue )~=0 end)
 cvars.AddChangeCallback( "cl_simfphys_hudrealspeed", function( convar, oldValue, newValue ) Hudreal = tonumber( newValue )~=0 end)
@@ -35,6 +13,7 @@ cvars.AddChangeCallback( "cl_simfphys_hudrealspeed", function( convar, oldValue,
 Hudmph = GetConVar( "cl_simfphys_hudmph" ):GetBool()
 Hudreal = GetConVar( "cl_simfphys_hudrealspeed" ):GetBool()
 show_crosshair = GetConVar( "cl_simfphys_crosshair" ):GetBool()
+ShowHud = GetConVar( "cl_simfphys_hud" ):GetBool()
 
 local function DrawCircle( X, Y, radius )
 	local segmentdist = 360 / ( 2 * math.pi * radius / 2 )

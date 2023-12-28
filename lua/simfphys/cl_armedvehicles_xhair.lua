@@ -513,32 +513,34 @@ local function MixDirection( ang, direction )
 end
 
 hook.Add( "HUDPaint", "simfphys_crosshair", function()
-	
+
 	if not show_crosshair then return end
-	
+
 	local ply = LocalPlayer()
 	local veh = ply:GetVehicle()
-	
+
 	if not IsValid( veh ) then return end
-	
+
 	local HasCrosshair = veh:GetNWBool( "HasCrosshair" ) 
-	
+
 	if not HasCrosshair then return end
-	
-	local vehicle = ply.GetSimfphys and ply:GetSimfphys() or veh.vehiclebase
-	
+
+	local vehicle = ply:GetSimfphys()
+
 	if not IsValid( vehicle ) then return end
-	
+
 	if ply:GetViewEntity() ~= ply then return end
-	
+
 	local ID = vehicle:LookupAttachment( veh:GetNWString( "Attachment" ) )
 	if ID == 0 then return end
-	
+
 	local Attachment = vehicle:GetAttachment( ID )
-	
+
+	if not Attachment then return end
+
 	local startpos = Attachment.Pos
 	local endpos = startpos + MixDirection( Attachment.Ang, veh:GetNWVector( "Direction" ) ) * 999999
-	
+
 	if veh:GetNWBool( "CalcCenterPos" ) then
 		local attach_l = vehicle:LookupAttachment( veh:GetNWString( "Start_Left" ) )
 		local attach_r = vehicle:LookupAttachment( veh:GetNWString( "Start_Right" ) )
@@ -553,6 +555,6 @@ hook.Add( "HUDPaint", "simfphys_crosshair", function()
 		end
 		return
 	end
-	
+
 	traceAndDrawCrosshair( startpos, endpos, vehicle, veh )
 end )

@@ -17,10 +17,8 @@ ShowHud = GetConVar( "cl_simfphys_hud" ):GetBool()
 
 local function DrawCircle( X, Y, radius )
 	local segmentdist = 360 / ( 2 * math.pi * radius / 2 )
-	
+
 	for a = 0, 360, segmentdist do
-		surface.DrawLine( X + math.cos( math.rad( a ) ) * radius, Y - math.sin( math.rad( a ) ) * radius, X + math.cos( math.rad( a + segmentdist ) ) * radius, Y - math.sin( math.rad( a + segmentdist ) ) * radius )
-		
 		surface.DrawLine( X + math.cos( math.rad( a ) ) * radius, Y - math.sin( math.rad( a ) ) * radius, X + math.cos( math.rad( a + segmentdist ) ) * radius, Y - math.sin( math.rad( a + segmentdist ) ) * radius )
 	end
 end

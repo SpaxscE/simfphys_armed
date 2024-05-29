@@ -1,3 +1,3 @@
 name=simfphys armed
-version=496
-url=https://raw.githubusercontent.com/SpaxscE/simfphys_base/master/data_static/lvs/771487490.txt?token=GHSAT0AAAAAACS2BCFPTCG246HR2DW3XHKWZSXLNGA
+version=164
+url=https://raw.githubusercontent.com/SpaxscE/simfphys_armed/master/data_static/lvs/831680603.txt?token=GHSAT0AAAAAACS2BCFOXNICRJCMIR6F2SFWZSXLPGQ

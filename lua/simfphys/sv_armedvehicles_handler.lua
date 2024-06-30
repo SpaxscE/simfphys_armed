@@ -18,8 +18,6 @@
 -- DO NOT EDIT OR REUPLOAD THIS SCRIPT
 -- DO NOT EDIT OR REUPLOAD THIS SCRIPT
 
-resource.AddWorkshop("831680603")
-
 simfphys = istable( simfphys ) and simfphys or {}
 
 simfphys.ManagedVehicles = istable( simfphys.ManagedVehicles ) and simfphys.ManagedVehicles or {}

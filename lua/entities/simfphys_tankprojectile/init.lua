@@ -46,6 +46,12 @@ function ENT:Initialize()
 	self.Vel = self:GetForward() * 200
 end
 
+local CanDeflectOn = {
+	["gmod_sent_vehicle_fphysics_base"] = true,
+	["gmod_sent_vehicle_fphysics_wheel"] = true,
+	["prop_physics"] = true,
+}
+
 function ENT:Think()	
 	local curtime = CurTime()
 	self:NextThink( curtime )
@@ -72,7 +78,7 @@ function ENT:Think()
 		
 		self.DeflectAng = self.DeflectAng or 25
 		
-		if hitangle < self.DeflectAng and not self.Bounced and (trace.Entity:GetClass() == "prop_physics" or trace.Entity.LVS) then
+		if hitangle < self.DeflectAng and not self.Bounced and CanDeflectOn[ trace.Entity:GetClass() ] then
 			
 			local thVel = self.Vel:Length()
 			
@@ -119,14 +125,14 @@ function ENT:Think()
 					else
 						dmginfo:SetDamageType(DMG_DIRECT)
 					end
-
+					
 					local attackingEnt = IsValid( self.AttackingEnt ) and self.AttackingEnt or self
 					local attacker = IsValid( self.Attacker ) and self.Attacker or self
-
+					
 					util.BlastDamage( attackingEnt, attacker, tr.HitPos,self.BlastRadius,self.BlastDamage)
-
+					
 					util.Decal("scorch", tr.HitPos - tr.HitNormal, tr.HitPos + tr.HitNormal)
-
+					
 					if tr.Entity ~= Entity(0) then
 						if simfphys.IsCar( tr.Entity ) then
 							local effectdata = EffectData()

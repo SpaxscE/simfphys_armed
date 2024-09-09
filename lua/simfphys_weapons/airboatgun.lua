@@ -1,23 +1,28 @@
 
 local function AirboatFire(ply,vehicle,shootOrigin,Attachment,damage)
 	local bullet = {}
-	bullet.Src 	= shootOrigin
-	bullet.Dir 	= Attachment.Ang:Forward()
-	bullet.Spread 	= Vector(0.04,0.04,0.04)
-	bullet.TracerName = "lvs_ar2_tracer"
-	bullet.Force	= damage
-	bullet.HullSize 	= 1
-	bullet.Damage	= damage
-	bullet.Velocity = 12000
-	bullet.Attacker 	= ply
-	bullet.Callback = function(att, tr, dmginfo)
-		local effectdata = EffectData()
-		effectdata:SetOrigin( tr.HitPos + tr.HitNormal )
-		effectdata:SetNormal( tr.HitNormal * 2 )
-		effectdata:SetRadius( 10 )
-		util.Effect( "cball_bounce", effectdata, true, true )
-	end
-	vehicle:LVSFireBullet( bullet )
+		bullet.Num 			= 1
+		bullet.Src 			= shootOrigin
+		bullet.Dir 			= Attachment.Ang:Forward()
+		bullet.Spread 		= Vector(0.04,0.04,0)
+		bullet.Tracer		= 1
+		bullet.TracerName 	= (damage > 10 and "AirboatGunHeavyTracer" or "AirboatGunTracer")
+		bullet.Force		= damage
+		bullet.Damage		= damage
+		bullet.HullSize		= 1
+		bullet.DisableOverride = true
+		bullet.Callback = function(att, tr, dmginfo)
+			dmginfo:SetDamageType(DMG_AIRBOAT)
+			
+			local effectdata = EffectData()
+				effectdata:SetOrigin(  tr.HitPos + tr.HitNormal )
+				effectdata:SetNormal( tr.HitNormal )
+				effectdata:SetRadius( (damage > 1) and 8 or 3 )
+			util.Effect( "cball_bounce", effectdata, true, true )
+		end
+		bullet.Attacker 	= ply
+		
+	vehicle:FireBullets( bullet )
 end
 
 function simfphys.weapon:ValidClasses()
@@ -56,23 +61,8 @@ function simfphys.weapon:AimWeapon( ply, vehicle, pod )
 	local Aimang = ply:EyeAngles()
 	local AimRate = 250
 	
-	local Angles = angle_zero
-	if ply:lvsMouseAim() then
-		local ang = vehicle:GetAngles()
-		ang.y = pod:GetAngles().y + 90
-
-		local Forward = ang:Right()
-		local View = pod:WorldToLocalAngles( Aimang )
-
-		local Pitch = (vehicle:AngleBetweenNormal( View:Up(), ang:Forward() ) - 90)
-		local Yaw = (vehicle:AngleBetweenNormal( View:Forward(), ang:Right() ) - 90)
-
-		Angles = Angle(-Pitch,Yaw,0)
-	else
-		Angles = vehicle:WorldToLocalAngles( Aimang ) - Angle(0,90,0)
-		Angles:Normalize()
-	end
-
+	local Angles = vehicle:WorldToLocalAngles( Aimang ) - Angle(0,90,0)
+	
 	vehicle.sm_pp_yaw = vehicle.sm_pp_yaw and math.ApproachAngle( vehicle.sm_pp_yaw, Angles.y, AimRate * FrameTime() ) or 0
 	vehicle.sm_pp_pitch = vehicle.sm_pp_pitch and math.ApproachAngle( vehicle.sm_pp_pitch, Angles.p, AimRate * FrameTime() ) or 0
 	

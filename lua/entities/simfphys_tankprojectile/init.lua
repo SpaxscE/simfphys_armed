@@ -55,15 +55,15 @@ local CanDeflectOn = {
 function ENT:Think()	
 	local curtime = CurTime()
 	self:NextThink( curtime )
-	
+
 	local Size = self:GetSize() * 0.5
 	local FixTick = FrameTime() * 66.666
-	
+
 	local trace = util.TraceHull( {
 		start = self:GetPos(),
 		endpos = self:GetPos() + self.Vel * FixTick,
-		maxs = Size,
-		mins = -Size,
+		maxs = Vector(1,1,1) * Size,
+		mins = Vector(-1,-1,-1) * Size,
 		filter = function( ent )
 			if ent ~= self and ent:GetClass() ~= "gmod_sent_vehicle_fphysics_wheel" and not table.HasValue( self.Filter, ent ) then return true end
 		end

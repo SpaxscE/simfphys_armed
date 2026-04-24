@@ -213,19 +213,19 @@ function simfphys.FireBullet( data )
 	if not isvector( data.shootDirection ) then return end
 	if not IsValid( data.attacker ) then return end
 	if not IsValid( data.attackingent ) then return end
-	
+
 	data.Spread = data.Spread or Vector(0,0,0)
 	data.Tracer = data.Tracer or 0
 	data.HullSize = data.HullSize or 1
-	
+
 	local trace = util.TraceHull( {
 		start = data.shootOrigin,
 		endpos = data.shootOrigin + (data.shootDirection + Vector(math.Rand(-data.Spread.x,data.Spread.x),math.Rand(-data.Spread.y,data.Spread.y),math.Rand(-data.Spread.x,data.Spread.x)) )* 50000,
 		filter = data.filter,
-		maxs = data.HullSize,
-		mins = -data.HullSize
+		maxs = Vector(1,1,1) * data.HullSize,
+		mins = Vector(-1,-1,-1) * data.HullSize
 	} )
-	
+
 	local bullet = {}
 	bullet.Num 			= 1
 	bullet.Src 			= trace.HitPos - data.shootDirection * 5
